@@ -1,6 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
-dotenv.config({ path: './tests/pwframework/config/test.env' });
 
 /**
  * Read environment variables from file.
