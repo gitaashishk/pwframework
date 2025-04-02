@@ -19,10 +19,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies & Playwright browsers
+      - name: Install dependencies
         run: npm install
 
-      - name: Run Playwright tests
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
         run: npm test
 
       - name: Upload HTML Report
