@@ -1,49 +1,43 @@
 name: Playwright Tests
 
-# Trigger workflow automatically on push and pull request to main branch
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
-# Define the job that runs tests
 jobs:
-  playwright-tests:
-    runs-on: ubuntu-latest  # Using latest Ubuntu OS
-
-    defaults:
-      run:
-        working-directory: tests/pwframework  # Explicitly defining working directory
+  test:
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out your repository code
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: .  # ✅ ensures the repo is checked out directly into the runner working directory
 
-      # Step 2: Install Node.js
+      - name: Show directory structure (debug)
+        run: |
+          echo "GitHub Actions current directory: $PWD"
+          ls -la
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # Step 3: Install project dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Install Playwright browsers needed for tests
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # Step 5: Run your Playwright tests
-      - name: Run Playwright tests
+      - name: Run Playwright Tests
         run: npx playwright test
 
-      # Step 6: Upload the generated test report even if tests fail
-      - name: Upload Test Report
+      - name: Upload Playwright HTML Report
         uses: actions/upload-artifact@v4
-        if: always()  # Uploads report regardless of success or failure
+        if: always()
         with:
           name: playwright-report
-          path: tests/pwframework/reports/html  # Ensure this matches your Playwright config
+          path: reports/html
