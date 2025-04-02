@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","8745","Test 1 for user : standard_user","chromium","Mon Mar 31 23:34:21 IST 2025","passed","Mon Mar 31 23:34:30 IST 2025","Login and Checkout Tests","login.spec.ts","",""
+"","7192","Test 2 for user : Leonard","chromium","Mon Mar 31 23:34:22 IST 2025","passed","Mon Mar 31 23:34:29 IST 2025","Login and Checkout Tests","login.spec.ts","",""
+"","7049","Test 1 Blank Delivery details for user : standard_user","chromium","Mon Mar 31 23:34:31 IST 2025","passed","Mon Mar 31 23:34:38 IST 2025","Blank Delivery Details","login.spec.ts","",""
+"","8223","Test 2 Blank Delivery details for user : standard_user","chromium","Mon Mar 31 23:34:32 IST 2025","passed","Mon Mar 31 23:34:41 IST 2025","Blank Delivery Details","login.spec.ts","",""

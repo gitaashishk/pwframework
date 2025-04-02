@@ -1,0 +1,27 @@
+[
+    {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "shouldLogin": true,
+      "TestCase": "emptydeliverydetails",
+      "checkoutItems": ["sauce-labs-backpack", "sauce-labs-bike-light"],
+      "checkoutInfo": {
+        "firstName": "Sheldon",
+        "lastName": "Cooper",
+        "zipCode": "12345"
+      }
+    }, 
+    {
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "shouldLogin": true,
+        "TestCase": "emptydeliverydetails",
+        "checkoutItems": ["sauce-labs-backpack", "sauce-labs-bike-light"],
+        "checkoutInfo": {
+          "firstName": "",
+          "lastName": "Wolowitz",
+          "zipCode": "33444"
+        }
+      }
+  ]
+  
