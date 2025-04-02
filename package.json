@@ -4,8 +4,7 @@
   "description": "Playwright automation framework",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
-    "postinstall": "npx playwright install --with-deps"
+    "test": "npx playwright test"
   },
   "keywords": [],
   "author": "",
