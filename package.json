@@ -1,18 +1,17 @@
 {
   "name": "pwframework",
   "version": "1.0.0",
+  "description": "Playwright automation framework",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "postinstall": "npx playwright install --with-deps"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
+    "@playwright/test": "^1.43.0",
     "allure-playwright": "^3.2.1"
   }
 }
