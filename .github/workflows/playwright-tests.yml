@@ -11,31 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          path: .  # ✅ ensures the repo is checked out directly into the runner working directory
-
-      - name: Show directory structure (debug)
-        run: |
-          echo "GitHub Actions current directory: $PWD"
-          ls -la
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Install dependencies & Playwright browsers
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npm test
 
-      - name: Run Playwright Tests
-        run: npx playwright test
-
-      - name: Upload Playwright HTML Report
+      - name: Upload HTML Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
