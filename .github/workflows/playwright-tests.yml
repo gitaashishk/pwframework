@@ -19,14 +19,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Install project dependencies
         run: npm install
 
+      - name: Install Playwright CLI globally
+        run: npm install -g @playwright/test
+
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npm test
+        run: npx playwright test
 
       - name: Upload HTML Report
         uses: actions/upload-artifact@v4
