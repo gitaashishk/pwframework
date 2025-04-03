@@ -15,7 +15,7 @@ test.describe('Login and Checkout Tests', () => {
 
       if (data.shouldLogin) {
         const success = await loginPage.isLoginSuccessful();
-        expect(success).toBe(true);  // Explicitly fail if false
+        expect(success).toBe(true);
 
         if (success && data.checkoutItems && data.checkoutInfo) {
           const inventoryPage = new InventoryPage(page);
@@ -35,10 +35,9 @@ test.describe('Login and Checkout Tests', () => {
           const orderSuccess = await checkoutPage.isOrderSuccessful();
           expect(orderSuccess).toBe(true);
         }
-
       } else {
         const errorDisplayed = await loginPage.isLoginError();
-        expect(errorDisplayed).toBe(true);  // Explicitly fail if error not displayed
+        expect(errorDisplayed).toBe(true);
 
         const errorText = await loginPage.getLoginErrorMessage();
         expect(errorText).toContain('Username and password do not match');
@@ -47,7 +46,6 @@ test.describe('Login and Checkout Tests', () => {
   });
 });
 
-// Test for blank delivery details
 test.describe('Blank Delivery Details', () => {
   checkoutdata.forEach((data, i) => {
     test(`Test ${i + 1} Blank Delivery details for user: ${data.username}`, async ({ page }) => {
@@ -57,7 +55,7 @@ test.describe('Blank Delivery Details', () => {
 
       if (data.shouldLogin) {
         const success = await loginPage.isLoginSuccessful();
-        expect(success).toBe(true);  // Explicitly fail if false
+        expect(success).toBe(true);
 
         if (success && data.checkoutItems && data.checkoutInfo && data.TestCase === 'emptydeliverydetails') {
           const inventoryPage = new InventoryPage(page);
@@ -79,71 +77,16 @@ test.describe('Blank Delivery Details', () => {
             expect(orderSuccess).toBe(true);
           } else {
             console.log('Cannot place order due to invalid details');
-            const checkouterrorText = await checkoutPage.invalidcheckoutdetails();
-            expect(checkouterrorText).toContain('First Name is required');
+            const checkoutErrorText = await checkoutPage.invalidcheckoutdetails();
+            expect(checkoutErrorText).toContain('First Name is required');
           }
         }
-
       } else {
         const errorDisplayed = await loginPage.isLoginError();
-        expect(errorDisplayed).toBe(true);  // Explicitly fail if error not displayed
+        expect(errorDisplayed).toBe(true);
 
-}
-
-	}
-  }
-});
-
-
-// Test for blank delivery details
-test.describe('Blank Delivery Details', () => {
-  checkoutdata.forEach((data,i) => {
-    test(`Test ${i + 1} Blank Delivery details for user : ${data.username}`, async ({ page }) => {
-      const loginPage = new LoginPage(page);
-      await loginPage.navigate();
-      await loginPage.login(data.username, data.password);
-
-      if (data.shouldLogin) {
-        const success = await loginPage.isLoginSuccessful();
-        expect(success).toBe(true);  // Explicitly fail if false
-
-        if (success && data.checkoutItems && data.checkoutInfo && data.TestCase === 'emptydeliverydetails') {
-			
-          const inventoryPage = new InventoryPage(page);
-          for (const item of data.checkoutItems) {
-            await inventoryPage.addItemToCart(item);
-          }
-          await inventoryPage.navigateToCart();
-          
-		  const cartPage = new CartPage(page);
-          await cartPage.checkout();
-
-		  const checkoutPage = new CheckoutPage(page);	
-          const info = data.checkoutInfo;
-          await checkoutPage.fillCheckoutInfo(info.firstName, info.lastName, info.zipCode);
-
-          if (page.url() === 'https://www.saucedemo.com/checkout-step-two.html') {
-				        await checkoutPage.completeCheckout();
-						const orderSuccess = await checkoutPage.isOrderSuccessful();
-						expect(orderSuccess).toBe(true);
-			} else {
-						console.log('Cant Place order due to invalid details');
-				        const checkouterrorText = await checkoutPage.invalidcheckoutdetails();
-						expect(checkouterrorText).toContain('First Name is required');
-		}
-          //const checkerrorDisplayed = await checkoutPage.invalidcheckoutdetails();
-          //expect(checkerrorDisplayed).toBe(true);  // Explicitly fail if error not displayed
-    
-        }
-
-      } else {
-		  
-		        const errorDisplayed = await loginPage.isLoginError();
-				expect(errorDisplayed).toBe(true);  // Explicitly fail if error not displayed
-
-				const errorText = await loginPage.getLoginErrorMessage();
-				expect(errorText).toContain('Username and password do not match');
-
+        const errorText = await loginPage.getLoginErrorMessage();
+        expect(errorText).toContain('Username and password do not match');
       }
     });
   });
